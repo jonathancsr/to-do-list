@@ -6,3 +6,11 @@
 
   background: var(--gray-600)
 }
+
+.addNewTask{
+  width: 100%;
+  margin-top: -1.5rem;
+
+  display: flex;
+  justify-content: center;
+}

@@ -3,16 +3,29 @@ import { TextInput } from "../../components/TextInput"
 import Plus from "../../components/icons/Plus"
 import styles from './styles.module.css'
 
-export const AddNewTask = () => {
+type AddNewTaskProps = {
+  onAddTask: (title: string) => void
+}
+
+export const AddNewTask = ({ onAddTask }: AddNewTaskProps) => {
+  const handleAddTask = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const taskInput = e.currentTarget?.task?.value;
+    onAddTask(taskInput);
+  }
+
   return (
-    <div className={styles.container}>
+    <form className={styles.container} onSubmit={handleAddTask}>
       <TextInput
+        id="name"
+        name="task"
         placeholder="Add new task..."
       />
       <Button
+        type="submit"
         label="Create"
-        rightIcon={<Plus/>}
+        rightIcon={<Plus />}
       />
-    </div>
+    </form>
   )
 }
