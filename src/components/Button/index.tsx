@@ -1,15 +1,15 @@
-import { ReactElement } from 'react';
+import { ButtonHTMLAttributes, ReactElement } from 'react';
 import styles from './styles.module.css';
 
 type ButtonProps = {
   label?: string;
   rightIcon?: ReactElement;
   onClick?: () => void
-}
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 export const Button = ({
   label,
   rightIcon,
-  onClick = () => { }
+  onClick
 }: ButtonProps) => {
   return (
     <button
