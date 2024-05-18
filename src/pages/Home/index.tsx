@@ -13,7 +13,7 @@ export const HomePage = () => {
       <Header/>
       <div className={styles.addNewTask}>
         <AddNewTask
-        onAddTask={(title) => setTasks([...tasks, createTask(title)])}
+        onAddTask={(title) => setTasks(createTask(title, tasks))}
         />
       </div>
       {tasks.map((task) => (
