@@ -1,4 +1,3 @@
-import { Divider } from "../../components/Divider";
 import { TaskCounter } from "../../components/TaskCounter";
 import { Task } from "../../types";
 import styles from './styles.module.css';
@@ -17,7 +16,6 @@ export const TasksContainer = ({ tasks }: TasksContainerProps) => {
         numberOfTasks={3}
         />
         </div>
-      <Divider/>
       {tasks.map((task) => (
         <div key={task.id} >
           <input
