@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AddNewTask } from "../../containers/AddNewTask";
 import { Header } from "../../containers/Header";
+import { TasksContainer } from "../../containers/TasksContainer";
 import { Task } from '../../types';
 import styles from './styles.module.css';
 import { createTask } from "./utils";
@@ -16,16 +17,7 @@ export const HomePage = () => {
         onAddTask={(title) => setTasks(createTask(title, tasks))}
         />
       </div>
-      {tasks.map((task) => (
-        <div key={task.id} className={styles.task}>
-          <input
-            type="checkbox"
-            checked={task.completed}
-            onChange={() => {}}
-          />
-          <p>{task.title}</p>
-        </div>
-      ))}
+      <TasksContainer tasks={tasks}/>
     </div>
   )
 }
