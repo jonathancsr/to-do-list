@@ -1,3 +1,4 @@
+import { Divider } from "../../components/Divider";
 import { TaskCounter } from "../../components/TaskCounter";
 import { Task } from "../../types";
 import styles from './styles.module.css';
@@ -7,16 +8,21 @@ type TasksContainerProps = {
 }
 
 export const TasksContainer = ({ tasks }: TasksContainerProps) => {
+  const completedTasks = tasks.filter((task) => task.completed).length
+  const numberOfTasks = tasks.length
+  const hasTasks = numberOfTasks > 0
+
+
   return (
     <>
       <div className={styles.header}>
-
-      <TaskCounter
-        completedTasks={2}
-        numberOfTasks={3}
+        <TaskCounter
+          completedTasks={completedTasks}
+          numberOfTasks={numberOfTasks}
         />
-        </div>
-      {tasks.map((task) => (
+      <Divider/>
+      </div>
+      {hasTasks && tasks.map((task) => (
         <div key={task.id} >
           <input
             type="checkbox"

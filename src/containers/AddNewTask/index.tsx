@@ -12,6 +12,7 @@ export const AddNewTask = ({ onAddTask }: AddNewTaskProps) => {
     e.preventDefault();
     const taskInput = e.currentTarget?.task?.value;
     onAddTask(taskInput);
+    e.currentTarget.reset();
   }
 
   return (
