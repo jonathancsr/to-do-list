@@ -1,8 +1,8 @@
+import Clipboard from '../../assets/icon/Clipboard.svg';
 import { Divider } from "../../components/Divider";
 import { TaskCounter } from "../../components/TaskCounter";
 import { Task } from "../../types";
 import styles from './styles.module.css';
-
 type TasksContainerProps = {
   tasks: Task[];
 }
@@ -12,7 +12,6 @@ export const TasksContainer = ({ tasks }: TasksContainerProps) => {
   const numberOfTasks = tasks.length
   const hasTasks = numberOfTasks > 0
 
-
   return (
     <>
       <div className={styles.header}>
@@ -20,8 +19,13 @@ export const TasksContainer = ({ tasks }: TasksContainerProps) => {
           completedTasks={completedTasks}
           numberOfTasks={numberOfTasks}
         />
-      <Divider/>
+        <Divider />
       </div>
+      {!hasTasks && <div className={styles.emptyList}>
+        <img src={Clipboard} />
+        <p>You don't have tasks registered yet</p>
+        <p>Create tasks and organize your to-do items</p>
+      </div>}
       {hasTasks && tasks.map((task) => (
         <div key={task.id} >
           <input
