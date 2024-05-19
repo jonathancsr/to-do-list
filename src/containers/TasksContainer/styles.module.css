@@ -27,3 +27,8 @@
     font-weight: bold;
   }
 }
+
+.tasks {
+  width: 720px;
+  margin-top: 1rem;
+}

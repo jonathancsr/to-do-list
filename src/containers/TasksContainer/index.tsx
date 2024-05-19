@@ -2,6 +2,7 @@ import Clipboard from '../../assets/icon/Clipboard.svg';
 import { Divider } from "../../components/Divider";
 import { TaskCounter } from "../../components/TaskCounter";
 import { Task } from "../../types";
+import { TaskList } from '../TaskList';
 import styles from './styles.module.css';
 type TasksContainerProps = {
   tasks: Task[];
@@ -26,16 +27,11 @@ export const TasksContainer = ({ tasks }: TasksContainerProps) => {
         <p>You don't have tasks registered yet</p>
         <p>Create tasks and organize your to-do items</p>
       </div>}
-      {hasTasks && tasks.map((task) => (
-        <div key={task.id} >
-          <input
-            type="checkbox"
-            checked={task.completed}
-            onChange={() => { }}
-          />
-          <p>{task.title}</p>
+      {hasTasks && (
+        <div className={styles.tasks}>
+          <TaskList tasks={tasks} />
         </div>
-      ))}
+      )}
     </>
   )
 }
