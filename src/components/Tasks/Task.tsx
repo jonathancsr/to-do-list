@@ -3,12 +3,14 @@ import Trash from "../icons/Trash";
 import styles from './styles.module.css';
 type TaskProps = {
   task: TaskType;
+  onDelete: () => void;
+  onComplete: () => void;
 }
-export const Task = ({ task }: TaskProps) => {
+export const Task = ({ task, onComplete, onDelete }: TaskProps) => {
   return (
     <div
-    className={styles.container}
-
+      className={styles.container}
+      onClick={onComplete}
     >
       <div className={styles.checkbox}>
         <input
@@ -17,7 +19,7 @@ export const Task = ({ task }: TaskProps) => {
         />
       </div>
       <p>{task.title}</p>
-      <button>
+      <button onClick={onDelete}>
         <Trash />
       </button>
     </div>

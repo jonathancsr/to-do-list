@@ -1,17 +1,23 @@
 import Clipboard from '../../assets/icon/Clipboard.svg';
 import { Divider } from "../../components/Divider";
 import { TaskCounter } from "../../components/TaskCounter";
-import { Task } from "../../types";
-import { TaskList } from '../TaskList';
+import { Task } from '../../components/Tasks/Task';
+import { useTaskContext } from '../../contexts/useTaskContext';
 import styles from './styles.module.css';
-type TasksContainerProps = {
-  tasks: Task[];
-}
 
-export const TasksContainer = ({ tasks }: TasksContainerProps) => {
+export const TasksContainer = () => {
+  const { tasks, completeTask, deleteTask } = useTaskContext();
   const completedTasks = tasks.filter((task) => task.completed).length
   const numberOfTasks = tasks.length
   const hasTasks = numberOfTasks > 0
+
+  const handleCompleteTask = (id: string) => {
+    completeTask(id)
+  }
+
+  const handleDeleteTask = (id: string) => {
+    deleteTask(id)
+  }
 
   return (
     <>
@@ -29,7 +35,14 @@ export const TasksContainer = ({ tasks }: TasksContainerProps) => {
       </div>}
       {hasTasks && (
         <div className={styles.tasks}>
-          <TaskList tasks={tasks} />
+          {tasks.map((task) => (
+            <Task
+              task={task}
+              key={task.id}
+              onComplete={() => handleCompleteTask(task.id)}
+              onDelete={() => handleDeleteTask(task.id)}
+            />
+          ))}
         </div>
       )}
     </>

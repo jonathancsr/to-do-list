@@ -1,9 +1,11 @@
+import { TaskContextProvider } from './contexts/useTaskContext'
 import './index.css'
 import { HomePage } from "./pages/Home"
 function App() {
-
   return (
-     <HomePage/>
+    <TaskContextProvider>
+      <HomePage/>
+    </TaskContextProvider>
   )
 }
 

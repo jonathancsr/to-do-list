@@ -1,17 +1,17 @@
 import { Button } from "../../components/Button"
 import { TextInput } from "../../components/TextInput"
 import Plus from "../../components/icons/Plus"
+import { useTaskContext } from "../../contexts/useTaskContext"
 import styles from './styles.module.css'
 
-type AddNewTaskProps = {
-  onAddTask: (title: string) => void
-}
 
-export const AddNewTask = ({ onAddTask }: AddNewTaskProps) => {
+
+export const AddNewTask = () => {
+  const {addNewTask} = useTaskContext();
   const handleAddTask = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const taskInput = e.currentTarget?.task?.value;
-    onAddTask(taskInput);
+    addNewTask(taskInput);
     e.currentTarget.reset();
   }
 
