@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { v4 as uuid } from 'uuid';
 import { Task } from "../types";
 type TaskContextType = {
@@ -18,7 +18,17 @@ const DEFAULT_VALUE = {
 const TaskContext = createContext<TaskContextType>(DEFAULT_VALUE);
 
 const TaskContextProvider = ({children}: {children: React.ReactElement}) => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>(() => {
+    const tasks = localStorage.getItem('tasks');
+    if(tasks) {
+      return JSON.parse(tasks);
+    }
+    return [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks])
 
   function addNewTask(title: string) {
     setTasks([...tasks, {
