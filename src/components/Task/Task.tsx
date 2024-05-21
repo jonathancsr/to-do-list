@@ -10,15 +10,16 @@ export const Task = ({ task, onComplete, onDelete }: TaskProps) => {
   return (
     <div
       className={styles.container}
-      onClick={onComplete}
     >
-      <div className={styles.checkbox}>
-        <input
-          type="checkbox"
-          checked={task.completed}
-        />
+      <div className={styles.label} onClick={onComplete}>
+        <div className={styles.checkbox}>
+          <input
+            type="checkbox"
+            checked={task.completed}
+          />
+        </div>
+        <p>{task.title}</p>
       </div>
-      <p>{task.title}</p>
       <button onClick={onDelete}>
         <Trash />
       </button>
